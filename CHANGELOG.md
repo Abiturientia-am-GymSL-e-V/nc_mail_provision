@@ -39,6 +39,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Background job for account synchronization
 - Connection testing feature for mail servers
 
-[Unreleased]: https://github.com/yourusername/mail_provisionierung/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/yourusername/mail_provisionierung/releases/tag/v0.1.0
-[1.0.0]: https://github.com/yourusername/mail_provisionierung/releases/tag/v1.0.0
+[1.0.0]: https://github.com/Abiturientia-am-GymSL-e-V/nc_mail_provision/releases/tag/v1.0.0
