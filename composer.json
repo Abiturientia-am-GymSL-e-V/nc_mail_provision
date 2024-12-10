@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OCA\MailProvision\": "lib/"
+            "OCA\\MailProvision\\": "lib/"
         }
     }
 }
