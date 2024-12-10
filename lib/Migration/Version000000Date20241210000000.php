@@ -19,8 +19,8 @@ class Version000000Date20241210000000 extends ISimpleMigration {
         /** @var ISchemaWrapper $schema */
         $schema = $schemaClosure();
 
-        if (!$schema->hasTable('mail_provision_accounts')) {
-            $table = $schema->createTable('mail_provision_accounts');
+        if (!$schema->hasTable('mailprovision_accounts')) {
+            $table = $schema->createTable('mailprovision_accounts');
             $table->addColumn('id', 'integer', [
                 'autoincrement' => true,
                 'notnull' => true,

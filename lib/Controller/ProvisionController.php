@@ -73,7 +73,20 @@ class ProvisionController extends Controller {
         $this->provisionService->updateSettings($settings);
         return new JSONResponse(['status' => 'success']);
     }
-
+    /**
+     * @NoCSRFRequired
+     * @NoAdminRequired
+     */
+    public function adminSettings() {
+    $settings = $this->provisionService->getSettings();
+    return new TemplateResponse('mailprovision', 'admin', [
+        'default_imap_host' => $settings['default_imap_host'] ?? '',
+        'default_imap_port' => $settings['default_imap_port'] ?? '',
+        'default_smtp_host' => $settings['default_smtp_host'] ?? '',
+        'default_smtp_port' => $settings['default_smtp_port'] ?? '',
+        'sync_interval' => $settings['sync_interval'] ?? '',
+    ]);
+    }
     /**
      * @NoCSRFRequired
      */

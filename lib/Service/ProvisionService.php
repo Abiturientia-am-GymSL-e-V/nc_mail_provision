@@ -234,4 +234,12 @@ class ProvisionService {
             $this->logger->error('Group not found: ' . $groupId, ['app' => 'mailprovision']);
         }
     }
+    public function updateSettings($settings) {
+        // Implementieren Sie hier die Logik zum Aktualisieren der Einstellungen
+        // Zum Beispiel:
+        $config = $this->config;
+        foreach ($settings as $key => $value) {
+            $config->setAppValue('mailprovision', $key, $value);
+        }
+    }
 }
