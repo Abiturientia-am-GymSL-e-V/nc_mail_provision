@@ -38,6 +38,7 @@ class ProvisionController extends Controller {
      * @NoCSRFRequired
      */
     public function create($email, $username, $password, $imap_host, $smtp_host) {
+        $userId = $this->userSession->getUser()->getUID();
         $account = $this->provisionService->createAccount($email, $username, $password, $imap_host, $smtp_host);
         return new JSONResponse($account);
     }

@@ -1,4 +1,12 @@
 <?php
+/** @var $l \OCP\IL10N */
+/** @var $_ array */
+
+use OCP\Util;
+use OCP\AppFramework\Http\TemplateResponse;
+
+Util::addScript('mailprovision');
+Util::addStyle('mailprovision');
 script('mailprovision', 'admin');
 style('mailprovision', 'admin');
 ?>

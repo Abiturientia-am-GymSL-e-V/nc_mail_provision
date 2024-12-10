@@ -4,10 +4,10 @@ namespace OCA\MailProvision\Migration;
 
 use Closure;
 use OCP\DB\ISchemaWrapper;
-use OCP\Migration\ISimpleMigration;
+use OCP\Migration\SimpleMigrationStep;
 use OCP\Migration\IOutput;
 
-class Version000000Date20241210000000 extends ISimpleMigration {
+class Version000000Date20241210000000 extends SimpleMigrationStep {
 
     /**
      * @param IOutput $output

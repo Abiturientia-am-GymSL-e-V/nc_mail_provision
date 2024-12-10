@@ -67,7 +67,7 @@ class ProvisionService {
         return $result->fetch();
     }
 
-    public function createAccount($email, $username, $password, $imapHost, $smtpHost) {
+    public function createAccount($email, $username, $password, $imapHost, $smtpHost, $userId) {
         $qb = $this->db->getQueryBuilder();
         $qb->insert('mailprovision_accounts')
             ->values([
@@ -76,6 +76,7 @@ class ProvisionService {
                 'password' => $qb->createNamedParameter($this->crypto->encrypt($password)),
                 'imap_host' => $qb->createNamedParameter($imapHost),
                 'smtp_host' => $qb->createNamedParameter($smtpHost),
+                'user_id' => $qb->createNamedParameter($userId)
             ])
             ->execute();
 
