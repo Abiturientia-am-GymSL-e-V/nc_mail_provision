@@ -64,8 +64,8 @@ class Version000000Date20241210000000 extends SimpleMigrationStep {
                 'notnull' => true,
             ]);
 
-            $table->setPrimaryKey(['id']);
-            $table->addIndex(['user_id'], 'mail_provision_user_id_index');
+            $table->setPrimaryKey(['id'], 'mp_accounts_pkey');
+            $table->addIndex(['user_id'], 'mp_user_id_idx');
         }
 
         return $schema;

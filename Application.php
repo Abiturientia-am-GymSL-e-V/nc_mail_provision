@@ -10,7 +10,8 @@ use OCA\MailProvision\Cron\ProvisionSync;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCA\MailProvision\Service\ProvisionService;
 use OCA\MailProvision\BackgroundJob\ProvisionSyncJob;
-
+use OCA\MailProvision\Settings\Admin;
+use OCA\MailProvision\Settings\AdminSection;
 
 class Application extends App implements IBootstrap {
 
@@ -34,6 +35,19 @@ class Application extends App implements IBootstrap {
         $context->registerService('OCA\MailProvision\BackgroundJob\ProvisionSyncJob', function($c) {
             return new \OCA\MailProvision\BackgroundJob\ProvisionSyncJob(
                 $c->get('OCA\MailProvision\Service\ProvisionService')
+            );
+        });
+
+        // Registrieren der Admin-Einstellungen
+        $context->registerService(Admin::class, function($c) {
+            return new Admin();
+        });
+
+        // Registrieren der Admin-Sektion
+        $context->registerService(AdminSection::class, function($c) {
+            return new AdminSection(
+                $c->get('L10N'),
+                $c->get('URLGenerator')
             );
         });
     }
