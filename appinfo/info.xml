@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>mailprovision</id>
+    <name>Mail Account Provisioning</name>
+    <summary>Provision mail accounts for users and groups</summary>
+    <description><![CDATA[This app allows administrators to automatically provision mail accounts for Nextcloud users and groups.]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="info@abiturientia-gymsl.de" homepage="https://abiturientia-gymsl.de">Abiturientia am GymSL e. V.</author>
+    <namespace>MailProvision</namespace>
+    <category>integration</category>
+    <bugs>https://github.com/your-repo/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="20" max-version="25"/>
+    </dependencies>
+    <settings>
+        <admin>OCA\MailProvision\Settings\Admin</admin>
+        <admin-section>OCA\MailProvision\Settings\AdminSection</admin-section>
+    </settings>
+    <background-jobs>
+        <job>OCA\MailProvision\Cron\ProvisionSync</job>
+    </background-jobs>
+    <css>css/admin.css</css>
+    <js>js/admin.js</js>
+</info>
