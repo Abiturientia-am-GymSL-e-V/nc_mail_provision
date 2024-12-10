@@ -59,11 +59,11 @@ class Version000000Date20241210000000 extends SimpleMigrationStep {
             ]);
             $table->addColumn('created_at', 'datetime', [
                 'notnull' => true,
-                'default' => 'CURRENT_TIMESTAMP'
+                'default' => $schema->getDatabasePlatform()->getCurrentTimestampSQL()
             ]);
             $table->addColumn('updated_at', 'datetime', [
                 'notnull' => true,
-                'default' => 'CURRENT_TIMESTAMP'
+                'default' => $schema->getDatabasePlatform()->getCurrentTimestampSQL()
             ]);
 
             $table->setPrimaryKey(['id'], 'mp_accounts_pkey');
