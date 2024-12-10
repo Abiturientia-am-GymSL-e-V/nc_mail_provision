@@ -643,13 +643,13 @@ Third-Party Software Components:
 
 This project includes the following third-party software components:
 
-1. horde/imap-client - LGPL-2.1 License
-   Copyright (c) 2008-2023 Horde LLC
-   A PHP client for IMAP servers
+1. ddeboer/imap - MIT License
+   Copyright (c) Dries De Peuter, David de Boer
+   A PHP library to read and process e-mails over IMAP
 
-2. pear/net_smtp - BSD-2-Clause License
-   Copyright (c) 1997-2023 The PHP Group
-   A PHP implementation of the SMTP protocol
+2. symfony/mailer - MIT License
+   Copyright (c) Fabien Potencier
+   A mailer component for Symfony
 
 3. phpunit/phpunit - BSD-3-Clause License
    Copyright (c) 2001-2023 Sebastian Bergmann

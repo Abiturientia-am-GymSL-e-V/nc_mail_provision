@@ -12,8 +12,10 @@ use OCA\Mail\Service\AccountService;
 use OCA\Mail\Db\MailAccount;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
-use Horde\Imap\Client\Socket as ImapClient;
-use Horde\Mail\Transport\Smtphorde;
+use Ddeboer\Imap\Server as ImapServer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
 use Psr\Log\LoggerInterface;
 
 class ProvisionService {
@@ -107,43 +109,37 @@ class ProvisionService {
             ->execute();
     }
 
-    public function testConnection($imapHost, $imapPort, $smtpHost, $smtpPort, $username, $password) {
-        $result = ['imap' => false, 'smtp' => false];
-
-        // Test IMAP connection
+    public function testImapConnection($host, $port, $username, $password, $encryption = 'ssl') {
         try {
-            $imapClient = new ImapClient([
-                'host' => $imapHost,
-                'port' => $imapPort,
-                'secure' => 'ssl',
-                'username' => $username,
-                'password' => $password
-            ]);
-            $imapClient->login();
-            $result['imap'] = true;
-            $imapClient->logout();
+            $server = new ImapServer(
+                $host,
+                $port,
+                $encryption === 'ssl' ? '/ssl' : ''
+            );
+            $connection = $server->authenticate($username, $password);
+            return true;
         } catch (\Exception $e) {
-            $result['imap_error'] = $e->getMessage();
-            $this->logger->error('IMAP connection test failed: ' . $e->getMessage(), ['app' => 'mailprovision']);
+            return false;
         }
+    }
 
-        // Test SMTP connection
+    public function sendTestEmail($smtpHost, $smtpPort, $username, $password, $encryption, $from, $to) {
         try {
-            $smtpClient = new Smtphorde([
-                'host' => $smtpHost,
-                'port' => $smtpPort,
-                'secure' => 'tls',
-                'username' => $username,
-                'password' => $password
-            ]);
-            $smtpClient->getSMTPObject();
-            $result['smtp'] = true;
-        } catch (\Exception $e) {
-            $result['smtp_error'] = $e->getMessage();
-            $this->logger->error('SMTP connection test failed: ' . $e->getMessage(), ['app' => 'mailprovision']);
-        }
+            $dsn = sprintf('%s://%s:%s@%s:%d', $encryption, $username, $password, $smtpHost, $smtpPort);
+            $transport = Transport::fromDsn($dsn);
+            $mailer = new Mailer($transport);
 
-        return $result;
+            $email = (new Email())
+                ->from($from)
+                ->to($to)
+                ->subject('Test Email')
+                ->text('This is a test email from MailProvision.');
+
+            $mailer->send($email);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function kontenSynchronisieren() {

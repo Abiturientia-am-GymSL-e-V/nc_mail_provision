@@ -39,4 +39,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Background job for account synchronization
 - Connection testing feature for mail servers
 
+## [2.0.0] - 2024-12-10
+### Added
+- Separate IMAP and SMTP connection testing functionality
+- Encryption options for IMAP and SMTP connections in the test interface
+- Improved user feedback for connection tests
+
+### Changed
+- Restructured the connection testing interface for better usability
+- Updated admin interface to include new testing options
+
+### Fixed
+- Various minor bugs and issues during development
+
+
 [1.0.0]: https://github.com/Abiturientia-am-GymSL-e-V/nc_mail_provision/releases/tag/v1.0.0
+[2.0.0]: https://github.com/Abiturientia-am-GymSL-e-V/nc_mail_provision/releases/tag/v2.0.0

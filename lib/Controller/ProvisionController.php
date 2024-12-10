@@ -77,8 +77,17 @@ class ProvisionController extends Controller {
     /**
      * @NoCSRFRequired
      */
-    public function testConnection($imap_host, $smtp_host, $username, $password) {
-        $result = $this->provisionService->testConnection($imap_host, $smtp_host, $username, $password);
-        return new JSONResponse($result);
+    public function testImapConnection($host, $port, $username, $password, $encryption) {
+        return new JSONResponse([
+            'success' => $this->provisionService->testImapConnection($host, $port, $username, $password, $encryption)
+        ]);
+    }
+    /**
+     * @NoCSRFRequired
+     */  
+    public function testSmtpConnection($host, $port, $username, $password, $encryption, $from, $to) {
+        return new JSONResponse([
+            'success' => $this->provisionService->sendTestEmail($host, $port, $username, $password, $encryption, $from, $to)
+        ]);
     }
 }

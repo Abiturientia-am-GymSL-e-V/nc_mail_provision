@@ -5,7 +5,7 @@
     <name>Mail Account Provisioning</name>
     <summary>Provision mail accounts for users and groups</summary>
     <description><![CDATA[This app allows administrators to automatically provision mail accounts for Nextcloud users and groups.]]></description>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <licence>agpl</licence>
     <author mail="info@abiturientia-gymsl.de" homepage="https://abiturientia-gymsl.de">Abiturientia am GymSL e. V.</author>
     <namespace>MailProvision</namespace>
@@ -13,6 +13,9 @@
     <bugs>https://github.com/Abiturientia-am-GymSL-e-V/nc_mail_provision/issues</bugs>
     <dependencies>
         <nextcloud min-version="20" max-version="25"/>
+        <php min-version="7.4">
+            <ext>imap</ext>
+        </php>
     </dependencies>
     <settings>
         <admin>OCA\MailProvision\Settings\Admin</admin>

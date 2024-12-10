@@ -7,10 +7,66 @@
             $('#mailprovision-add-account').on('click', this.showAddAccountForm);
             $('#mailprovision-account-form-element').on('submit', this.saveAccount);
             $('#mailprovision-test-connection').on('click', this.testConnection);
+            $('#mailprovision-test-imap-connection').on('click', this.testImapConnection);
+            $('#mailprovision-test-smtp-connection').on('click', this.testSmtpConnection);
             this.loadAccounts();
             this.loadSettings();
         },
-
+        testImapConnection: function(e) {
+            e.preventDefault();
+            var data = {
+                host: $('#imap_host').val(),
+                port: $('#imap_port').val(),
+                username: $('#username').val(),
+                password: $('#password').val(),
+                encryption: $('#imap_encryption').val()
+            };
+        
+            $.ajax({
+                url: OC.generateUrl('/apps/mailprovision/test-imap-connection'),
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    if (response.success) {
+                        OC.msg.finishedSuccess('#mailprovision-imap-test-msg', t('mailprovision', 'IMAP connection successful'));
+                    } else {
+                        OC.msg.finishedError('#mailprovision-imap-test-msg', t('mailprovision', 'IMAP connection failed'));
+                    }
+                },
+                error: function() {
+                    OC.msg.finishedError('#mailprovision-imap-test-msg', t('mailprovision', 'Error testing IMAP connection'));
+                }
+            });
+        },
+        
+        testSmtpConnection: function(e) {
+            e.preventDefault();
+            var data = {
+                host: $('#smtp_host').val(),
+                port: $('#smtp_port').val(),
+                username: $('#username').val(),
+                password: $('#password').val(),
+                encryption: $('#smtp_encryption').val(),
+                from: $('#email').val(),
+                to: $('#email').val()
+            };
+        
+            $.ajax({
+                url: OC.generateUrl('/apps/mailprovision/test-smtp-connection'),
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    if (response.success) {
+                        OC.msg.finishedSuccess('#mailprovision-smtp-test-msg', t('mailprovision', 'SMTP connection successful'));
+                    } else {
+                        OC.msg.finishedError('#mailprovision-smtp-test-msg', t('mailprovision', 'SMTP connection failed'));
+                    }
+                },
+                error: function() {
+                    OC.msg.finishedError('#mailprovision-smtp-test-msg', t('mailprovision', 'Error testing SMTP connection'));
+                }
+            });
+        },
         saveSettings: function(e) {
             e.preventDefault();
             var data = $(this).serialize();
@@ -47,21 +103,9 @@
 
         testConnection: function(e) {
             e.preventDefault();
-            var data = $('#mailprovision-form').serialize();
-
-            $.ajax({
-                url: OC.generateUrl('/apps/mailprovision/test-connection'),
-                type: 'POST',
-                data: data,
-                success: function(response) {
-                    OC.msg.finishedSuccess('#mailprovision-test-msg', t('mailprovision', 'Connection successful'));
-                },
-                error: function(xhr) {
-                    OC.msg.finishedError('#mailprovision-test-msg', t('mailprovision', 'Connection failed'));
-                }
-            });
-        },
-
+            OCA.MailProvision.Admin.testImapConnection(e);
+            OCA.MailProvision.Admin.testSmtpConnection(e);
+        },         
         loadAccounts: function() {
             $.ajax({
                 url: OC.generateUrl('/apps/mailprovision/provision'),

@@ -113,11 +113,28 @@ style('mailprovision', 'admin');
             <label for="test-imap-port"><?php p($l->t('IMAP Port:')); ?></label>
             <input type="number" id="test-imap-port" name="imap_port" value="993" required>
 
+            <label for="test-imap-encryption"><?php p($l->t('IMAP Encryption:')); ?></label>
+            <select id="test-imap-encryption" name="imap_encryption">
+                <option value="ssl"><?php p($l->t('SSL/TLS')); ?></option>
+                <option value="tls"><?php p($l->t('STARTTLS')); ?></option>
+                <option value="none"><?php p($l->t('None')); ?></option>
+            </select>
+
+            <button id="mailprovision-test-imap-connection" type="button" class="button"><?php p($l->t('Test IMAP Connection')); ?></button>
+            <span id="mailprovision-imap-test-msg"></span>
+
             <label for="test-smtp-host"><?php p($l->t('SMTP Host:')); ?></label>
             <input type="text" id="test-smtp-host" name="smtp_host" required>
 
             <label for="test-smtp-port"><?php p($l->t('SMTP Port:')); ?></label>
             <input type="number" id="test-smtp-port" name="smtp_port" value="587" required>
+
+            <label for="test-smtp-encryption"><?php p($l->t('SMTP Encryption:')); ?></label>
+            <select id="test-smtp-encryption" name="smtp_encryption">
+                <option value="tls"><?php p($l->t('STARTTLS')); ?></option>
+                <option value="ssl"><?php p($l->t('SSL/TLS')); ?></option>
+                <option value="none"><?php p($l->t('None')); ?></option>
+            </select>
 
             <label for="test-username"><?php p($l->t('Username:')); ?></label>
             <input type="text" id="test-username" name="username" required>
@@ -125,11 +142,16 @@ style('mailprovision', 'admin');
             <label for="test-password"><?php p($l->t('Password:')); ?></label>
             <input type="password" id="test-password" name="password" required>
 
-            <button type="submit"><?php p($l->t('Test Connection')); ?></button>
+            <button id="mailprovision-test-smtp-connection" type="button" class="button"><?php p($l->t('Test SMTP Connection')); ?></button>
+            <span id="mailprovision-smtp-test-msg"></span>
+
             <button type="button" id="mailprovision-cancel-test"><?php p($l->t('Cancel')); ?></button>
         </form>
         <div id="mailprovision-test-result"></div>
     </div>
+
+    <div id="mailprovision-msg" class="msg"></div>
+</div>
 
     <div id="mailprovision-msg" class="msg"></div>
 </div>

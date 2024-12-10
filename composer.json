@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=7.4",
-        "horde/imap-client": "^2.30",
-        "pear/net_smtp": "^1.10"
+        "ddeboer/imap": "^1.0",
+        "symfony/mailer": "^5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
