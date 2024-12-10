@@ -7,14 +7,14 @@ use OCP\Settings\ISettings;
 class Admin implements ISettings {
 
     public function getForm() {
-        return new TemplateResponse('mail_provision', 'admin');
+        return new TemplateResponse('mailprovision', 'admin');
     }
 
     public function getSection() {
-        return 'additional';
+        return 'mailprovision';
     }
 
     public function getPriority() {
-        return 50;
+        return 10;
     }
 }

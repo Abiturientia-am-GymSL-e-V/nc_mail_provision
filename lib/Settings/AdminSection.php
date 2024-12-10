@@ -15,11 +15,11 @@ class AdminSection implements IIconSection {
     }
 
     public function getID() {
-        return 'mail_provision';
+        return 'mailprovision';
     }
 
     public function getName() {
-        return $this->l->t('Mail Provision');
+        return $this->l->t('Mail Account Provisioning');
     }
 
     public function getPriority() {
@@ -27,6 +27,6 @@ class AdminSection implements IIconSection {
     }
 
     public function getIcon() {
-        return $this->url->imagePath('mail_provision', 'app.svg');
+        return $this->url->imagePath('mailprovision', 'app-dark.svg');
     }
 }

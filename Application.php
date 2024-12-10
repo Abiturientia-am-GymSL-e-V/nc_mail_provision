@@ -1,6 +1,6 @@
 <?php
 
-namespace OCA\MailProvision;
+namespace OCA\MailProvision\AppInfo;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootstrap;
