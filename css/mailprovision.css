@@ -1,0 +1,64 @@
+#mailprovision {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mailprovision-form {
+    margin-bottom: 20px;
+}
+
+.mailprovision-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+.mailprovision-form input,
+.mailprovision-form select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.mailprovision-form button {
+    margin-top: 10px;
+}
+
+#mailprovision-accounts-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#mailprovision-accounts-list th,
+#mailprovision-accounts-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#mailprovision-accounts-list th {
+    background-color: #f2f2f2;
+}
+
+.mailprovision-action-button {
+    margin-right: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.msg {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -6,16 +6,20 @@ use OCP\IRequest;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCA\MailProvision\Service\ProvisionService;
+use OCP\IUserSession;
+
 /**
  * @AdminRequired
  */
 class ProvisionController extends Controller {
 
     private $provisionService;
+    private $userSession;
 
-    public function __construct($AppName, IRequest $request, ProvisionService $provisionService) {
+    public function __construct($AppName, IRequest $request, ProvisionService $provisionService, IUserSession $userSession) {
         parent::__construct($AppName, $request);
         $this->provisionService = $provisionService;
+        $this->userSession = $userSession;
     }
 
     /**
@@ -38,8 +42,12 @@ class ProvisionController extends Controller {
      * @NoCSRFRequired
      */
     public function create($email, $username, $password, $imap_host, $smtp_host) {
-        $userId = $this->userSession->getUser()->getUID();
-        $account = $this->provisionService->createAccount($email, $username, $password, $imap_host, $smtp_host);
+        $user = $this->userSession->getUser();
+        if (!$user) {
+            return new JSONResponse(['error' => 'User not logged in'], 401);
+        }
+        $userId = $user->getUID();
+        $account = $this->provisionService->createAccount($email, $username, $password, $imap_host, $smtp_host, $userId);
         return new JSONResponse($account);
     }
 

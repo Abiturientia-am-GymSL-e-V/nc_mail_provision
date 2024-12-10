@@ -24,6 +24,12 @@
     <background-jobs>
         <job>OCA\MailProvision\Cron\ProvisionSync</job>
     </background-jobs>
-    <css>css/admin.css</css>
-    <js>js/admin.js</js>
+    <css>
+        <admin>css/admin.css</admin>
+        <public>css/mailprovision.css</public>
+    </css>
+    <js>
+        <admin>js/admin.js</admin>
+        <public>js/mailprovision.js</public>
+    </js>
 </info>

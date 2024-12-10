@@ -50,11 +50,11 @@ class ProvisionService {
 
     public function getAllAccounts() {
         $qb = $this->db->getQueryBuilder();
-        $result = $qb->select('*')
-            ->from('mailprovision_accounts')
-            ->execute();
-
-        return $result->fetchAll();
+        $qb->select('*')
+            ->from('mailprovision_accounts');
+        $result = $qb->execute();
+        $accounts = $result->fetchAll();
+        return $accounts ?: [];
     }
 
     public function getAccount($id) {
