@@ -50,6 +50,7 @@ class Application extends App implements IBootstrap {
                 $c->get('URLGenerator')
             );
         });
+        $context->registerSettings(ISettings::class, Admin::class);
     }
 
     public function boot(IBootContext $context): void {
